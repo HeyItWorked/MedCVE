@@ -8,8 +8,10 @@ from analysis.metrics import (
     build_domain_severity_matrix,
     build_kpis,
     build_severity_distribution,
+    build_triage_queue,
     build_weakness_ranking,
     clean_records,
+    export_rows,
     headline_metrics,
     load_records,
 )
@@ -26,4 +28,6 @@ __all__ = [
     "build_weakness_ranking",
     "build_domain_ranking",
     "build_domain_severity_matrix",
+    "build_triage_queue",
+    "export_rows",
 ]

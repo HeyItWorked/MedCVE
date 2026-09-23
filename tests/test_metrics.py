@@ -1,3 +1,5 @@
+import json
+
 import pandas as pd
 
 from analysis import (
@@ -8,7 +10,9 @@ from analysis import (
     build_domain_severity_matrix,
     build_kpis,
     build_severity_distribution,
+    build_triage_queue,
     build_weakness_ranking,
+    export_rows,
 )
 
 
@@ -62,3 +66,17 @@ def test_matrix_rows_follow_domain_ranking(records):
     ranking = build_domain_ranking(records)
     matrix = build_domain_severity_matrix(records, ranking)
     assert list(matrix.index) == ranking["Keyword"].tolist()
+
+
+def test_triage_score_stacks_every_term(records):
+    # CRITICAL + NETWORK + CVSS 9.9: severity 5 + network 2 + critical 2 + high 1
+    single = records[records["CVE_ID"] == "CVE-2099-0025"]
+    assert build_triage_queue(single).iloc[0]["triage_score"] == 10
+
+
+def test_exports_are_strict_json_with_null_dates(records):
+    rows = export_rows(build_triage_queue(records)) + export_rows(
+        build_annual_trend(records)
+    )
+    json.dumps(rows, allow_nan=False)
+    assert any(row.get("Published_Year", 0) is None for row in rows)

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 SEVERITY_LABELS = ("LOW", "MEDIUM", "HIGH", "CRITICAL")
@@ -242,3 +243,63 @@ def build_domain_severity_matrix(
 
     top_domains = domain_ranking["Keyword"].tolist()
     return matrix.reindex(top_domains)
+
+
+def build_triage_queue(records: pd.DataFrame, top: int = 15) -> pd.DataFrame:
+    """Individual CVEs that would surface near the top of a review queue."""
+    queue = records.copy()
+    queue["Keyword"] = queue["Keyword"].fillna("N/A")
+    queue["Weakness"] = queue["Weakness"].fillna("N/A")
+
+    severity_score = (
+        queue["Severity"]
+        .map({"CRITICAL": 5, "HIGH": 4, "MEDIUM": 2, "LOW": 1})
+        .fillna(0)
+    )
+    network_score = queue["Attack_Vector"].eq("NETWORK").astype(int) * 2
+    critical_cvss_score = queue["CVSS_Score"].fillna(0).ge(9).astype(int) * 2
+    high_cvss_score = queue["CVSS_Score"].fillna(0).ge(7).astype(int)
+
+    # Ordering helper for the dashboard, not a security score.
+    queue["triage_score"] = (
+        severity_score + network_score + critical_cvss_score + high_cvss_score
+    )
+
+    queue = queue.sort_values(
+        ["triage_score", "CVSS_Score", "Published"],
+        ascending=[False, False, False],
+    )
+
+    triage_columns = [
+        "CVE_ID",
+        "Keyword",
+        "Severity",
+        "CVSS_Score",
+        "Attack_Vector",
+        "Weakness",
+        "Published",
+        "triage_score",
+    ]
+
+    return queue[triage_columns].head(top)
+
+
+def _export_value(value):
+    """Convert one cell to a strict-JSON-safe value."""
+    if pd.isna(value):
+        return None
+    if isinstance(value, pd.Timestamp):
+        return value.strftime("%Y-%m-%d")
+    if isinstance(value, np.generic):
+        value = value.item()
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    return value
+
+
+def export_rows(frame: pd.DataFrame) -> list[dict]:
+    """Convert a builder's frame to rows that survive ``json.dumps(..., allow_nan=False)``."""
+    return [
+        {key: _export_value(value) for key, value in row.items()}
+        for row in frame.to_dict(orient="records")
+    ]
