@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MedCVE</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>MedCVE</h1>
+        <p>Healthcare-tagged CVE records from the NVD, summarized.</p>
+        <p id="status">Loading...</p>
+      </header>
+
+      <section id="kpi-cards"></section>
+
+      <section class="grid">
+        <article><h2>Annual Trend</h2><div id="annual_trend"></div></article>
+        <article><h2>CVSS Bands</h2><div id="cvss_bands"></div></article>
+        <article><h2>Severity Distribution</h2><div id="severity_distribution"></div></article>
+        <article><h2>Attack Vector Distribution</h2><div id="attack_vector_distribution"></div></article>
+        <article><h2>Weakness Ranking</h2><div id="weakness_ranking"></div></article>
+        <article><h2>Domain Ranking</h2><div id="domain_ranking"></div></article>
+        <article><h2>Domain Severity Matrix</h2><div id="domain_severity_matrix"></div></article>
+        <article><h2>Triage Queue</h2><div id="triage_queue"></div></article>
+      </section>
+
+      <footer>
+        <p>The domain priority score and the triage score are ordering heuristics with hand-picked weights. They rank records for review and do not measure security or patient risk.</p>
+        <p>CVSS scores of exactly 0.0 and missing scores fall in no band, so the band shares can add up to less than 100%.</p>
+      </footer>
+    </main>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
