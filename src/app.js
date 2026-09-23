@@ -10,6 +10,17 @@ const FILES = [
   "triage_queue",
 ];
 
+// Which columns each table shows, as [key, header].
+const PANELS = {
+  annual_trend: [["Published_Year", "Year"], ["total_cves", "Total CVEs"], ["high_critical_network", "High/Critical Network"]],
+  cvss_bands: [["band", "Band"], ["range", "Range"], ["count", "Count"], ["share", "Share"]],
+  severity_distribution: [["severity", "Severity"], ["count", "Count"], ["share", "Share"]],
+  attack_vector_distribution: [["attack_vector", "Vector"], ["count", "Count"], ["share", "Share"]],
+  weakness_ranking: [["Weakness", "Weakness"], ["cve_count", "CVEs"], ["high_critical_count", "High/Crit"]],
+  domain_ranking: [["Keyword", "Domain"], ["priority_score", "Priority"], ["network_rate", "Network Rate"]],
+  triage_queue: [["CVE_ID", "CVE"], ["Severity", "Severity"], ["Keyword", "Domain"], ["triage_score", "Score"]],
+};
+
 async function loadData() {
   const data = {};
   for (const name of FILES) {
@@ -24,6 +35,19 @@ async function loadData() {
 
 function percent(value) {
   return `${Math.round(value * 100)}%`;
+}
+
+function formatCell(key, value) {
+  if (value === null || value === undefined) {
+    return "";
+  }
+  if (key === "share" || key === "network_rate") {
+    return percent(value);
+  }
+  if (typeof value === "number" && !Number.isInteger(value)) {
+    return value.toFixed(1);
+  }
+  return String(value);
 }
 
 function renderKpis(kpis) {
@@ -43,11 +67,43 @@ function renderKpis(kpis) {
   }
 }
 
+function renderTable(id, rows, columns) {
+  const table = document.createElement("table");
+  const header = document.createElement("tr");
+  for (const [, title] of columns) {
+    const th = document.createElement("th");
+    th.textContent = title;
+    header.append(th);
+  }
+  table.append(header);
+
+  for (const row of rows) {
+    const tr = document.createElement("tr");
+    for (const [key] of columns) {
+      const td = document.createElement("td");
+      td.textContent = formatCell(key, row[key]);
+      tr.append(td);
+    }
+    table.append(tr);
+  }
+  document.querySelector(`#${id}`).append(table);
+}
+
+// The matrix has one column per severity label found in the data.
+function matrixColumns(rows) {
+  const severities = Object.keys(rows[0] ?? {}).filter((key) => key !== "Keyword");
+  return [["Keyword", "Domain"], ...severities.map((key) => [key, key])];
+}
+
 async function main() {
   const status = document.querySelector("#status");
   try {
     const data = await loadData();
     renderKpis(data.kpis);
+    for (const [name, columns] of Object.entries(PANELS)) {
+      renderTable(name, data[name], columns);
+    }
+    renderTable("domain_severity_matrix", data.domain_severity_matrix, matrixColumns(data.domain_severity_matrix));
     status.textContent = "";
   } catch (error) {
     status.textContent = `Could not load the dashboard: ${error.message}`;
