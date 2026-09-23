@@ -75,3 +75,64 @@ def build_kpis(records: pd.DataFrame) -> pd.DataFrame:
             },
         ]
     )
+
+
+def build_annual_trend(records: pd.DataFrame) -> pd.DataFrame:
+    """CVEs per publication year, including the null-year group last."""
+    frame = records.copy()
+    high_critical = frame["Severity"].isin(["HIGH", "CRITICAL"])
+    network = frame["Attack_Vector"].eq("NETWORK")
+    frame["high_critical_network"] = high_critical & network
+
+    return (
+        frame.groupby("Published_Year", dropna=False)
+        .agg(
+            total_cves=("CVE_ID", "count"),
+            high_critical_network=("high_critical_network", "sum"),
+        )
+        .reset_index()
+    )
+
+
+def _label_distribution(records: pd.DataFrame, column: str, label: str) -> pd.DataFrame:
+    """Count occurrences of each label, keeping the null group as ``"N/A"``."""
+    counts = (
+        records[column]
+        .value_counts(dropna=False)
+        .rename_axis(label)
+        .reset_index(name="count")
+    )
+
+    counts[label] = counts[label].fillna("N/A")
+    counts["share"] = counts["count"] / len(records)
+    return counts
+
+
+def build_severity_distribution(records: pd.DataFrame) -> pd.DataFrame:
+    """How much of the dataset falls into each severity tier."""
+    return _label_distribution(records, "Severity", "severity")
+
+
+def build_attack_vector_distribution(records: pd.DataFrame) -> pd.DataFrame:
+    """Whether network-reachable issues dominate the dataset."""
+    return _label_distribution(records, "Attack_Vector", "attack_vector")
+
+
+def build_cvss_bands(records: pd.DataFrame) -> pd.DataFrame:
+    """Four fixed CVSS score bands with both bounds inclusive."""
+    bands = pd.DataFrame(
+        {
+            "band": ["Low", "Medium", "High", "Critical"],
+            "range": ["0.1-3.9", "4.0-6.9", "7.0-8.9", "9.0-10.0"],
+            "count": [
+                records["CVSS_Score"].between(0.1, 3.9, inclusive="both").sum(),
+                records["CVSS_Score"].between(4.0, 6.9, inclusive="both").sum(),
+                records["CVSS_Score"].between(7.0, 8.9, inclusive="both").sum(),
+                records["CVSS_Score"].between(9.0, 10.0, inclusive="both").sum(),
+            ],
+        }
+    )
+
+    # A score of 0.0 or a missing score falls in no band, so shares can sum to less than 1.
+    bands["share"] = bands["count"] / len(records)
+    return bands

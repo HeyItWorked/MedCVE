@@ -1,7 +1,11 @@
 """Metric builders shared by the notebook, tests and dashboard exports."""
 
 from analysis.metrics import (
+    build_annual_trend,
+    build_attack_vector_distribution,
+    build_cvss_bands,
     build_kpis,
+    build_severity_distribution,
     clean_records,
     headline_metrics,
     load_records,
@@ -12,4 +16,8 @@ __all__ = [
     "clean_records",
     "headline_metrics",
     "build_kpis",
+    "build_annual_trend",
+    "build_severity_distribution",
+    "build_attack_vector_distribution",
+    "build_cvss_bands",
 ]

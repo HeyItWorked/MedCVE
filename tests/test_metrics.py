@@ -1,7 +1,11 @@
 import pandas as pd
 
 from analysis import (
+    build_annual_trend,
+    build_attack_vector_distribution,
+    build_cvss_bands,
     build_kpis,
+    build_severity_distribution,
 )
 
 
@@ -25,3 +29,20 @@ def test_kpis_are_five_rows_in_order(records):
         "high_critical_network_count",
     ]
     assert kpis.loc[0, "value"] == 30
+
+
+def test_annual_trend_counts_every_row_with_null_year_last(records):
+    annual = build_annual_trend(records)
+    assert annual["total_cves"].sum() == len(records)
+    assert pd.isna(annual["Published_Year"].iloc[-1])
+
+
+def test_distributions_count_every_row(records):
+    for build in (build_severity_distribution, build_attack_vector_distribution):
+        assert build(records)["count"].sum() == len(records)
+
+
+def test_cvss_bands_leave_out_zero_and_missing_scores(records):
+    bands = build_cvss_bands(records)
+    assert list(bands["band"]) == ["Low", "Medium", "High", "Critical"]
+    assert bands["count"].sum() < len(records)
