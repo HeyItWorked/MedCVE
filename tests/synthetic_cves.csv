@@ -1,0 +1,32 @@
+CVE_ID,Keyword,Published,Last_Modified,Status,Description,Severity,CVSS_Score,Attack_Vector,Weakness,Reference
+CVE-2099-0001,domain-a,2020-01-05,2020-01-05,Analyzed,Lower edge of the Low band.,LOW,0.1,NETWORK,CWE-1,https://example.invalid/CVE-2099-0001
+CVE-2099-0002,domain-a,2020-02-05,2020-02-05,Analyzed,Upper edge of the Low band.,LOW,3.9,LOCAL,CWE-1,https://example.invalid/CVE-2099-0002
+CVE-2099-0003,domain-b,2020-03-05,2020-03-05,Analyzed,Lower edge of the Medium band.,MEDIUM,4.0,NETWORK,CWE-2,https://example.invalid/CVE-2099-0003
+CVE-2099-0004,domain-b,2020-04-05,2020-04-05,Analyzed,Upper edge of the Medium band.,MEDIUM,6.9,PHYSICAL,CWE-2,https://example.invalid/CVE-2099-0004
+CVE-2099-0005,domain-c,2021-01-05,2021-01-05,Analyzed,Lower edge of the High band.,HIGH,7.0,NETWORK,CWE-3,https://example.invalid/CVE-2099-0005
+CVE-2099-0006,domain-c,2021-02-05,2021-02-05,Analyzed,Upper edge of the High band.,HIGH,8.9,ADJACENT_NETWORK,CWE-3,https://example.invalid/CVE-2099-0006
+CVE-2099-0007,domain-d,2021-03-05,2021-03-05,Analyzed,Lower edge of the Critical band.,CRITICAL,9.0,NETWORK,CWE-4,https://example.invalid/CVE-2099-0007
+CVE-2099-0008,domain-d,2021-04-05,2021-04-05,Analyzed,Upper edge of the Critical band.,CRITICAL,10.0,NETWORK,CWE-4,https://example.invalid/CVE-2099-0008
+CVE-2099-0009,domain-e,2021-05-05,2021-05-05,Analyzed,"Score of zero, outside every band.",LOW,0.0,LOCAL,CWE-5,https://example.invalid/CVE-2099-0009
+CVE-2099-0010,domain-e,2021-06-05,2021-06-05,Analyzed,"Missing score, written as the literal N/A.",MEDIUM,N/A,NETWORK,CWE-5,https://example.invalid/CVE-2099-0010
+CVE-2099-0011,domain-f,2022-01-05,2022-01-05,Analyzed,"Missing severity and vector, both literal N/A.",N/A,5.0,N/A,CWE-6,https://example.invalid/CVE-2099-0011
+CVE-2099-0012,domain-f,2022-02-05,2022-02-05,Analyzed,"Missing severity and vector, both empty fields.",,5.5,,CWE-6,https://example.invalid/CVE-2099-0012
+CVE-2099-0013,,2022-03-05,2022-03-05,Analyzed,Empty keyword and empty weakness.,HIGH,7.5,NETWORK,,https://example.invalid/CVE-2099-0013
+CVE-2099-0014,N/A,2022-04-05,2022-04-05,Analyzed,Literal N/A keyword and weakness.,HIGH,7.6,NETWORK,N/A,https://example.invalid/CVE-2099-0014
+CVE-2099-0015,domain-g,not-a-date,not-a-date,Analyzed,Unparseable publication date.,CRITICAL,9.5,NETWORK,CWE-7,https://example.invalid/CVE-2099-0015
+CVE-2099-0016,domain-g,,2025-01-01,Analyzed,Missing publication date.,CRITICAL,9.6,NETWORK,CWE-7,https://example.invalid/CVE-2099-0016
+CVE-2099-0017,domain-h,2022-05-05,2022-05-05,Analyzed,"Description with a comma, a ""quoted phrase"", and
+a newline inside it.",MEDIUM,6.0,NETWORK,CWE-8,https://example.invalid/CVE-2099-0017
+CVE-2099-0018,domain-h,2023-01-05,2023-01-05,Analyzed,Weakness nine.,HIGH,8.0,NETWORK,CWE-9,https://example.invalid/CVE-2099-0018
+CVE-2099-0019,domain-i,2023-02-05,2023-02-05,Analyzed,Weakness ten.,HIGH,8.1,NETWORK,CWE-10,https://example.invalid/CVE-2099-0019
+CVE-2099-0020,domain-i,2023-03-05,2023-03-05,Analyzed,Weakness eleven.,HIGH,8.2,NETWORK,CWE-11,https://example.invalid/CVE-2099-0020
+CVE-2099-0021,domain-j,2023-04-05,2023-04-05,Analyzed,Weakness twelve.,HIGH,8.3,NETWORK,CWE-12,https://example.invalid/CVE-2099-0021
+CVE-2099-0022,domain-j,2023-05-05,2023-05-05,Analyzed,"Weakness twelve again, to break a tie.",CRITICAL,9.1,NETWORK,CWE-12,https://example.invalid/CVE-2099-0022
+CVE-2099-0023,domain-k,2023-06-05,2023-06-05,Analyzed,Tie candidate one.,HIGH,7.0,NETWORK,CWE-13,https://example.invalid/CVE-2099-0023
+CVE-2099-0024,domain-l,2023-06-05,2023-06-05,Analyzed,"Tie candidate two, identical scores.",HIGH,7.0,NETWORK,CWE-14,https://example.invalid/CVE-2099-0024
+CVE-2099-0025,domain-m,2024-01-05,2024-01-05,Analyzed,Thirteenth domain.,CRITICAL,9.9,NETWORK,CWE-4,https://example.invalid/CVE-2099-0025
+CVE-2099-0026,domain-n,2024-02-05,2024-02-05,Analyzed,Fourteenth domain.,CRITICAL,9.8,NETWORK,CWE-4,https://example.invalid/CVE-2099-0026
+CVE-2099-0027,domain-a,2024-03-05,2024-03-05,Analyzed,High triage score.,CRITICAL,9.7,NETWORK,CWE-1,https://example.invalid/CVE-2099-0027
+CVE-2099-0028,domain-b,2024-04-05,2024-04-05,Analyzed,High triage score.,CRITICAL,9.4,NETWORK,CWE-2,https://example.invalid/CVE-2099-0028
+CVE-2099-0029,domain-c,2024-05-05,2024-05-05,Analyzed,High triage score.,CRITICAL,9.3,NETWORK,CWE-3,https://example.invalid/CVE-2099-0029
+CVE-2099-0030,domain-d,2024-06-05,2024-06-05,Analyzed,Lowest triage score.,LOW,1.0,PHYSICAL,CWE-4,https://example.invalid/CVE-2099-0030

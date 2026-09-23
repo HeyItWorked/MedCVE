@@ -1,0 +1,4 @@
+-r requirements.txt
+
+pytest>=9.1,<9.2
+ruff>=0.16,<0.17
