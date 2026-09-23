@@ -1,0 +1,27 @@
+[
+  {
+    "severity": "MEDIUM",
+    "count": 720,
+    "share": 0.4752475247524752
+  },
+  {
+    "severity": "HIGH",
+    "count": 492,
+    "share": 0.32475247524752476
+  },
+  {
+    "severity": "CRITICAL",
+    "count": 151,
+    "share": 0.09966996699669967
+  },
+  {
+    "severity": "LOW",
+    "count": 134,
+    "share": 0.08844884488448845
+  },
+  {
+    "severity": "N/A",
+    "count": 18,
+    "share": 0.011881188118811881
+  }
+]

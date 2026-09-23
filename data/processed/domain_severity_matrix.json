@@ -1,0 +1,82 @@
+[
+  {
+    "Keyword": "hospital",
+    "CRITICAL": 53,
+    "HIGH": 126,
+    "LOW": 55,
+    "MEDIUM": 226,
+    "N/A": 2
+  },
+  {
+    "Keyword": "patient",
+    "CRITICAL": 20,
+    "HIGH": 61,
+    "LOW": 23,
+    "MEDIUM": 136,
+    "N/A": 5
+  },
+  {
+    "Keyword": "OpenEMR",
+    "CRITICAL": 4,
+    "HIGH": 39,
+    "LOW": 5,
+    "MEDIUM": 70,
+    "N/A": 0
+  },
+  {
+    "Keyword": "DICOM",
+    "CRITICAL": 8,
+    "HIGH": 67,
+    "LOW": 1,
+    "MEDIUM": 27,
+    "N/A": 4
+  },
+  {
+    "Keyword": "pharmacy",
+    "CRITICAL": 24,
+    "HIGH": 20,
+    "LOW": 17,
+    "MEDIUM": 33,
+    "N/A": 1
+  },
+  {
+    "Keyword": "healthcare",
+    "CRITICAL": 17,
+    "HIGH": 43,
+    "LOW": 2,
+    "MEDIUM": 8,
+    "N/A": 2
+  },
+  {
+    "Keyword": "blood bank",
+    "CRITICAL": 4,
+    "HIGH": 24,
+    "LOW": 16,
+    "MEDIUM": 44,
+    "N/A": 0
+  },
+  {
+    "Keyword": "laboratory",
+    "CRITICAL": 8,
+    "HIGH": 19,
+    "LOW": 4,
+    "MEDIUM": 34,
+    "N/A": 1
+  },
+  {
+    "Keyword": "electronic health record",
+    "CRITICAL": 5,
+    "HIGH": 16,
+    "LOW": 0,
+    "MEDIUM": 22,
+    "N/A": 0
+  },
+  {
+    "Keyword": "health information",
+    "CRITICAL": 1,
+    "HIGH": 12,
+    "LOW": 3,
+    "MEDIUM": 33,
+    "N/A": 1
+  }
+]

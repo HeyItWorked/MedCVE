@@ -1,0 +1,32 @@
+[
+  {
+    "metric": "total_cves",
+    "label": "Total CVEs",
+    "value": 1515,
+    "format": "count"
+  },
+  {
+    "metric": "critical_cves",
+    "label": "Critical CVEs",
+    "value": 151,
+    "format": "count"
+  },
+  {
+    "metric": "high_critical_rate",
+    "label": "High/Critical Rate",
+    "value": 0.42442244224422443,
+    "format": "percent"
+  },
+  {
+    "metric": "network_vector_rate",
+    "label": "Network Vector Rate",
+    "value": 0.8442244224422443,
+    "format": "percent"
+  },
+  {
+    "metric": "high_critical_network_count",
+    "label": "High/Critical Network CVEs",
+    "value": 574,
+    "format": "count"
+  }
+]

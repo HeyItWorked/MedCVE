@@ -1,0 +1,102 @@
+[
+  {
+    "Keyword": "hospital",
+    "cve_count": 462,
+    "critical_count": 53,
+    "high_critical_count": 179,
+    "network_count": 407,
+    "avg_cvss": 6.239565217391304,
+    "priority_score": 1557,
+    "network_rate": 0.8809523809523809
+  },
+  {
+    "Keyword": "patient",
+    "cve_count": 245,
+    "critical_count": 20,
+    "high_critical_count": 81,
+    "network_count": 206,
+    "avg_cvss": 6.379583333333333,
+    "priority_score": 786,
+    "network_rate": 0.8408163265306122
+  },
+  {
+    "Keyword": "OpenEMR",
+    "cve_count": 118,
+    "critical_count": 4,
+    "high_critical_count": 43,
+    "network_count": 118,
+    "avg_cvss": 6.532203389830509,
+    "priority_score": 402,
+    "network_rate": 1
+  },
+  {
+    "Keyword": "DICOM",
+    "cve_count": 107,
+    "critical_count": 8,
+    "high_critical_count": 75,
+    "network_count": 56,
+    "avg_cvss": 7.4893203883495145,
+    "priority_score": 356,
+    "network_rate": 0.5233644859813084
+  },
+  {
+    "Keyword": "pharmacy",
+    "cve_count": 95,
+    "critical_count": 24,
+    "high_critical_count": 44,
+    "network_count": 93,
+    "avg_cvss": 6.6978723404255325,
+    "priority_score": 356,
+    "network_rate": 0.9789473684210527
+  },
+  {
+    "Keyword": "healthcare",
+    "cve_count": 72,
+    "critical_count": 17,
+    "high_critical_count": 60,
+    "network_count": 59,
+    "avg_cvss": 8.817142857142859,
+    "priority_score": 318,
+    "network_rate": 0.8194444444444444
+  },
+  {
+    "Keyword": "blood bank",
+    "cve_count": 88,
+    "critical_count": 4,
+    "high_critical_count": 28,
+    "network_count": 83,
+    "avg_cvss": 5.880681818181818,
+    "priority_score": 279,
+    "network_rate": 0.9431818181818182
+  },
+  {
+    "Keyword": "laboratory",
+    "cve_count": 66,
+    "critical_count": 8,
+    "high_critical_count": 27,
+    "network_count": 64,
+    "avg_cvss": 6.653846153846154,
+    "priority_score": 236,
+    "network_rate": 0.9696969696969697
+  },
+  {
+    "Keyword": "electronic health record",
+    "cve_count": 43,
+    "critical_count": 5,
+    "high_critical_count": 21,
+    "network_count": 42,
+    "avg_cvss": 7.044186046511629,
+    "priority_score": 159,
+    "network_rate": 0.9767441860465116
+  },
+  {
+    "Keyword": "health information",
+    "cve_count": 50,
+    "critical_count": 1,
+    "high_critical_count": 13,
+    "network_count": 28,
+    "avg_cvss": 5.802040816326531,
+    "priority_score": 138,
+    "network_rate": 0.56
+  }
+]

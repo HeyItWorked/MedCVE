@@ -1,0 +1,117 @@
+[
+  {
+    "Published_Year": 2004,
+    "total_cves": 1,
+    "high_critical_network": 0
+  },
+  {
+    "Published_Year": 2005,
+    "total_cves": 3,
+    "high_critical_network": 1
+  },
+  {
+    "Published_Year": 2006,
+    "total_cves": 4,
+    "high_critical_network": 1
+  },
+  {
+    "Published_Year": 2007,
+    "total_cves": 7,
+    "high_critical_network": 3
+  },
+  {
+    "Published_Year": 2008,
+    "total_cves": 3,
+    "high_critical_network": 2
+  },
+  {
+    "Published_Year": 2009,
+    "total_cves": 3,
+    "high_critical_network": 2
+  },
+  {
+    "Published_Year": 2010,
+    "total_cves": 3,
+    "high_critical_network": 2
+  },
+  {
+    "Published_Year": 2011,
+    "total_cves": 4,
+    "high_critical_network": 0
+  },
+  {
+    "Published_Year": 2012,
+    "total_cves": 10,
+    "high_critical_network": 2
+  },
+  {
+    "Published_Year": 2013,
+    "total_cves": 9,
+    "high_critical_network": 2
+  },
+  {
+    "Published_Year": 2014,
+    "total_cves": 15,
+    "high_critical_network": 2
+  },
+  {
+    "Published_Year": 2015,
+    "total_cves": 34,
+    "high_critical_network": 29
+  },
+  {
+    "Published_Year": 2016,
+    "total_cves": 11,
+    "high_critical_network": 6
+  },
+  {
+    "Published_Year": 2017,
+    "total_cves": 115,
+    "high_critical_network": 9
+  },
+  {
+    "Published_Year": 2018,
+    "total_cves": 96,
+    "high_critical_network": 12
+  },
+  {
+    "Published_Year": 2019,
+    "total_cves": 74,
+    "high_critical_network": 27
+  },
+  {
+    "Published_Year": 2020,
+    "total_cves": 58,
+    "high_critical_network": 22
+  },
+  {
+    "Published_Year": 2021,
+    "total_cves": 97,
+    "high_critical_network": 54
+  },
+  {
+    "Published_Year": 2022,
+    "total_cves": 168,
+    "high_critical_network": 82
+  },
+  {
+    "Published_Year": 2023,
+    "total_cves": 94,
+    "high_critical_network": 32
+  },
+  {
+    "Published_Year": 2024,
+    "total_cves": 262,
+    "high_critical_network": 90
+  },
+  {
+    "Published_Year": 2025,
+    "total_cves": 279,
+    "high_critical_network": 122
+  },
+  {
+    "Published_Year": 2026,
+    "total_cves": 165,
+    "high_critical_network": 72
+  }
+]

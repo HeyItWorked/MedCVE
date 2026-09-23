@@ -1,0 +1,27 @@
+[
+  {
+    "attack_vector": "NETWORK",
+    "count": 1279,
+    "share": 0.8442244224422443
+  },
+  {
+    "attack_vector": "LOCAL",
+    "count": 134,
+    "share": 0.08844884488448845
+  },
+  {
+    "attack_vector": "ADJACENT_NETWORK",
+    "count": 64,
+    "share": 0.042244224422442245
+  },
+  {
+    "attack_vector": "PHYSICAL",
+    "count": 20,
+    "share": 0.013201320132013201
+  },
+  {
+    "attack_vector": "N/A",
+    "count": 18,
+    "share": 0.011881188118811881
+  }
+]

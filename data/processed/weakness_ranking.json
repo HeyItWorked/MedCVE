@@ -1,0 +1,82 @@
+[
+  {
+    "Weakness": "CWE-89",
+    "cve_count": 308,
+    "critical_count": 81,
+    "high_critical_count": 190,
+    "network_count": 294,
+    "avg_cvss": 7.573355263157896
+  },
+  {
+    "Weakness": "CWE-74",
+    "cve_count": 125,
+    "critical_count": 0,
+    "high_critical_count": 68,
+    "network_count": 124,
+    "avg_cvss": 6.684
+  },
+  {
+    "Weakness": "NVD-CWE-noinfo",
+    "cve_count": 209,
+    "critical_count": 10,
+    "high_critical_count": 41,
+    "network_count": 166,
+    "avg_cvss": 5.533492822966507
+  },
+  {
+    "Weakness": "CWE-255",
+    "cve_count": 31,
+    "critical_count": 0,
+    "high_critical_count": 27,
+    "network_count": 29,
+    "avg_cvss": 9.041935483870969
+  },
+  {
+    "Weakness": "CWE-787",
+    "cve_count": 30,
+    "critical_count": 6,
+    "high_critical_count": 27,
+    "network_count": 16,
+    "avg_cvss": 8.282758620689656
+  },
+  {
+    "Weakness": "CWE-79",
+    "cve_count": 247,
+    "critical_count": 0,
+    "high_critical_count": 19,
+    "network_count": 242,
+    "avg_cvss": 4.972244897959184
+  },
+  {
+    "Weakness": "CWE-434",
+    "cve_count": 22,
+    "critical_count": 8,
+    "high_critical_count": 19,
+    "network_count": 22,
+    "avg_cvss": 8.690909090909091
+  },
+  {
+    "Weakness": "CWE-119",
+    "cve_count": 21,
+    "critical_count": 0,
+    "high_critical_count": 13,
+    "network_count": 11,
+    "avg_cvss": 7.10952380952381
+  },
+  {
+    "Weakness": "CWE-22",
+    "cve_count": 26,
+    "critical_count": 2,
+    "high_critical_count": 12,
+    "network_count": 21,
+    "avg_cvss": 6.707999999999999
+  },
+  {
+    "Weakness": "CWE-862",
+    "cve_count": 20,
+    "critical_count": 1,
+    "high_critical_count": 12,
+    "network_count": 19,
+    "avg_cvss": 6.88
+  }
+]

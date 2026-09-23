@@ -1,0 +1,152 @@
+[
+  {
+    "CVE_ID": "CVE-2026-24898",
+    "Keyword": "electronic health record",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-287",
+    "Published": "2026-03-03",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2025-63531",
+    "Keyword": "blood bank",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-89",
+    "Published": "2025-12-01",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2025-39380",
+    "Keyword": "hospital",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-434",
+    "Published": "2025-05-19",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2024-23621",
+    "Keyword": "healthcare",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-131",
+    "Published": "2024-01-26",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2024-23622",
+    "Keyword": "healthcare",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-131",
+    "Published": "2024-01-26",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2020-6961",
+    "Keyword": "clinical",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-256",
+    "Published": "2020-01-24",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2020-6962",
+    "Keyword": "clinical",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-20",
+    "Published": "2020-01-24",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2020-6963",
+    "Keyword": "clinical",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-798",
+    "Published": "2020-01-24",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2020-6966",
+    "Keyword": "clinical",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-326",
+    "Published": "2020-01-24",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2019-5617",
+    "Keyword": "laboratory",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-284",
+    "Published": "2019-11-06",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2019-5644",
+    "Keyword": "laboratory",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 10,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-284",
+    "Published": "2019-11-06",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2026-24848",
+    "Keyword": "electronic health record",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 9.9,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-22",
+    "Published": "2026-03-03",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2026-24908",
+    "Keyword": "patient",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 9.9,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-89",
+    "Published": "2026-02-25",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2026-24849",
+    "Keyword": "electronic health record",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 9.9,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-22",
+    "Published": "2026-02-25",
+    "triage_score": 10
+  },
+  {
+    "CVE_ID": "CVE-2025-47663",
+    "Keyword": "hospital",
+    "Severity": "CRITICAL",
+    "CVSS_Score": 9.9,
+    "Attack_Vector": "NETWORK",
+    "Weakness": "CWE-434",
+    "Published": "2025-05-23",
+    "triage_score": 10
+  }
+]
