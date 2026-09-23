@@ -4,8 +4,11 @@ from analysis import (
     build_annual_trend,
     build_attack_vector_distribution,
     build_cvss_bands,
+    build_domain_ranking,
+    build_domain_severity_matrix,
     build_kpis,
     build_severity_distribution,
+    build_weakness_ranking,
 )
 
 
@@ -46,3 +49,16 @@ def test_cvss_bands_leave_out_zero_and_missing_scores(records):
     bands = build_cvss_bands(records)
     assert list(bands["band"]) == ["Low", "Medium", "High", "Critical"]
     assert bands["count"].sum() < len(records)
+
+
+def test_rankings_keep_nested_counts(records):
+    for ranking in (build_weakness_ranking(records), build_domain_ranking(records)):
+        assert len(ranking) <= 10
+        assert (ranking["critical_count"] <= ranking["high_critical_count"]).all()
+        assert (ranking["high_critical_count"] <= ranking["cve_count"]).all()
+
+
+def test_matrix_rows_follow_domain_ranking(records):
+    ranking = build_domain_ranking(records)
+    matrix = build_domain_severity_matrix(records, ranking)
+    assert list(matrix.index) == ranking["Keyword"].tolist()

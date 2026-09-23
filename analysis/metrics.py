@@ -136,3 +136,109 @@ def build_cvss_bands(records: pd.DataFrame) -> pd.DataFrame:
     # A score of 0.0 or a missing score falls in no band, so shares can sum to less than 1.
     bands["share"] = bands["count"] / len(records)
     return bands
+
+
+def build_weakness_ranking(records: pd.DataFrame, top: int = 10) -> pd.DataFrame:
+    """Weakness patterns ranked by urgent-severity volume."""
+    weakness_counts = records.groupby("Weakness", dropna=False)["CVE_ID"].count()
+    critical_counts = records.groupby("Weakness", dropna=False)["Severity"].apply(
+        lambda values: values.eq("CRITICAL").sum()
+    )
+    high_critical_counts = records.groupby("Weakness", dropna=False)["Severity"].apply(
+        lambda values: values.isin(["HIGH", "CRITICAL"]).sum()
+    )
+    network_counts = records.groupby("Weakness", dropna=False)["Attack_Vector"].apply(
+        lambda values: values.eq("NETWORK").sum()
+    )
+    avg_cvss_by_weakness = records.groupby("Weakness", dropna=False)[
+        "CVSS_Score"
+    ].mean()
+
+    ranking = pd.DataFrame(
+        {
+            "Weakness": weakness_counts.index,
+            "cve_count": weakness_counts.values,
+            "critical_count": critical_counts.values,
+            "high_critical_count": high_critical_counts.values,
+            "network_count": network_counts.values,
+            "avg_cvss": avg_cvss_by_weakness.values,
+        }
+    )
+
+    ranking["Weakness"] = ranking["Weakness"].fillna("N/A")
+    ranking = ranking.sort_values(
+        ["high_critical_count", "cve_count", "avg_cvss"],
+        ascending=[False, False, False],
+    )
+
+    return ranking.head(top)
+
+
+def build_domain_ranking(records: pd.DataFrame, top: int = 10) -> pd.DataFrame:
+    """Healthcare domains ranked by a simple priority score."""
+    frame = records.copy()
+    severity_points = (
+        frame["Severity"]
+        .map({"CRITICAL": 4, "HIGH": 3, "MEDIUM": 2, "LOW": 1})
+        .fillna(0)
+    )
+    remote_points = frame["Attack_Vector"].eq("NETWORK").astype(int)
+    critical_cvss_points = frame["CVSS_Score"].fillna(0).ge(9).astype(int)
+
+    frame["priority_score"] = severity_points + remote_points + critical_cvss_points
+
+    domain_counts = frame.groupby("Keyword", dropna=False)["CVE_ID"].count()
+    domain_critical_counts = frame.groupby("Keyword", dropna=False)["Severity"].apply(
+        lambda values: values.eq("CRITICAL").sum()
+    )
+    domain_high_critical_counts = frame.groupby("Keyword", dropna=False)[
+        "Severity"
+    ].apply(lambda values: values.isin(["HIGH", "CRITICAL"]).sum())
+    domain_network_counts = frame.groupby("Keyword", dropna=False)[
+        "Attack_Vector"
+    ].apply(lambda values: values.eq("NETWORK").sum())
+    domain_avg_cvss = frame.groupby("Keyword", dropna=False)["CVSS_Score"].mean()
+    domain_priority_scores = frame.groupby("Keyword", dropna=False)[
+        "priority_score"
+    ].sum()
+
+    ranking = pd.DataFrame(
+        {
+            "Keyword": domain_counts.index,
+            "cve_count": domain_counts.values,
+            "critical_count": domain_critical_counts.values,
+            "high_critical_count": domain_high_critical_counts.values,
+            "network_count": domain_network_counts.values,
+            "avg_cvss": domain_avg_cvss.values,
+            "priority_score": domain_priority_scores.values,
+        }
+    )
+
+    ranking["Keyword"] = ranking["Keyword"].fillna("N/A")
+    ranking["network_rate"] = ranking["network_count"] / ranking["cve_count"]
+    ranking = ranking.sort_values(
+        ["priority_score", "high_critical_count", "cve_count"],
+        ascending=[False, False, False],
+    )
+
+    return ranking.head(top)
+
+
+def build_domain_severity_matrix(
+    records: pd.DataFrame, domain_ranking: pd.DataFrame
+) -> pd.DataFrame:
+    """Domain-by-severity count pivot for the highest-priority domains."""
+    matrix_source = records.copy()
+    matrix_source["Keyword"] = matrix_source["Keyword"].fillna("N/A")
+    matrix_source["Severity"] = matrix_source["Severity"].fillna("N/A")
+
+    matrix = matrix_source.pivot_table(
+        index="Keyword",
+        columns="Severity",
+        values="CVE_ID",
+        aggfunc="count",
+        fill_value=0,
+    )
+
+    top_domains = domain_ranking["Keyword"].tolist()
+    return matrix.reindex(top_domains)
