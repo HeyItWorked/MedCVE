@@ -31,24 +31,18 @@ const BAR_COLUMN = {
 
 const SEVERITY_ORDER = ["CRITICAL", "HIGH", "MEDIUM", "LOW", "N/A"];
 
-// Plain-English names for the weaknesses that show up in the ranking.
+// Plain-English names for the weaknesses in the ranking. Unknown IDs show no name.
 const CWE_NAMES = {
-  "CWE-20": "Improper input validation",
   "CWE-22": "Path traversal",
   "CWE-74": "Injection",
   "CWE-79": "Cross-site scripting",
   "CWE-89": "SQL injection",
   "CWE-119": "Memory buffer errors",
   "CWE-255": "Credentials management",
-  "CWE-287": "Improper authentication",
-  "CWE-306": "Missing authentication",
-  "CWE-352": "Cross-site request forgery",
   "CWE-434": "Unrestricted file upload",
   "CWE-787": "Out-of-bounds write",
-  "CWE-798": "Hard-coded credentials",
   "CWE-862": "Missing authorization",
   "NVD-CWE-noinfo": "Not enough information",
-  "NVD-CWE-Other": "Other",
 };
 
 async function loadData() {
@@ -63,23 +57,21 @@ async function loadData() {
   return data;
 }
 
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
 function percent(value) {
   return `${Math.round(value * 100)}%`;
 }
 
 function formatCell(key, value) {
-  if (value === null || value === undefined) {
-    return "";
-  }
-  if (key === "share" || key === "network_rate") {
-    return percent(value);
-  }
-  if (typeof value === "number" && !Number.isInteger(value)) {
-    return value.toFixed(1);
-  }
-  if (typeof value === "number") {
-    return value.toLocaleString();
-  }
+  if (value === null || value === undefined) return "";
+  if (key === "share" || key === "network_rate") return percent(value);
+  if (typeof value === "number") return Number.isInteger(value) ? value.toLocaleString() : value.toFixed(1);
   return String(value);
 }
 
@@ -89,25 +81,18 @@ function setText(id, text) {
 
 // "CRITICAL" -> "Critical". "N/A" stays as it is and maps to the "na" class.
 function severity(label) {
-  const span = document.createElement("span");
-  span.className = `sev sev-${label === "N/A" ? "na" : label.toLowerCase()}`;
-  span.textContent = label === "N/A" ? "N/A" : label[0] + label.slice(1).toLowerCase();
-  return span;
+  const na = label === "N/A";
+  return el("span", `sev-${na ? "na" : label.toLowerCase()}`, na ? label : label[0] + label.slice(1).toLowerCase());
 }
 
 function barCell(text, fraction) {
-  const wrap = document.createElement("div");
-  wrap.className = "bar-cell";
-  const label = document.createElement("span");
-  label.textContent = text;
-  const track = document.createElement("span");
-  track.className = "track";
-  track.setAttribute("aria-hidden", "true");
-  const bar = document.createElement("span");
-  bar.className = "bar";
+  const bar = el("span", "bar");
   bar.style.width = `${Math.round(fraction * 100)}%`;
+  const track = el("span", "track");
+  track.setAttribute("aria-hidden", "true");
   track.append(bar);
-  wrap.append(label, track);
+  const wrap = el("div", "bar-cell");
+  wrap.append(el("span", "", text), track);
   return wrap;
 }
 
@@ -156,31 +141,24 @@ function renderTakeaways(data) {
 function renderTable(id, rows, columns) {
   const barKey = BAR_COLUMN[id];
   const barMax = barKey ? Math.max(...rows.map((row) => row[barKey] ?? 0)) : 0;
-
-  const table = document.createElement("table");
-  const header = document.createElement("tr");
-  for (const [key, title] of columns) {
-    const th = document.createElement("th");
-    th.textContent = title;
-    if (key === barKey) th.className = "bar-head";
-    header.append(th);
-  }
+  const table = el("table");
+  const header = el("tr");
+  for (const [, title] of columns) header.append(el("th", "", title));
   table.append(header);
 
   for (const row of rows) {
-    const tr = document.createElement("tr");
+    const tr = el("tr");
     for (const [key] of columns) {
-      const td = document.createElement("td");
       const text = formatCell(key, row[key]);
+      const td = el("td");
       if (key === "Severity" || key === "severity") {
         td.append(severity(text || "N/A"));
       } else if (key === "name") {
-        td.textContent = CWE_NAMES[row.Weakness] ?? "";
         td.className = "name";
+        td.textContent = CWE_NAMES[row.Weakness] ?? "";
       } else if (key === "CVE_ID") {
-        const link = document.createElement("a");
+        const link = el("a", "", text);
         link.href = `https://nvd.nist.gov/vuln/detail/${encodeURIComponent(text)}`;
-        link.textContent = text;
         td.append(link);
       } else if (key === barKey && barMax > 0) {
         td.append(barCell(text, (row[key] ?? 0) / barMax));
@@ -197,34 +175,21 @@ function renderTable(id, rows, columns) {
 // A column per year. The red part of each bar is the high/critical network share.
 function renderTrend(rows) {
   const max = Math.max(...rows.map((row) => row.total_cves));
-  const chart = document.createElement("div");
-  chart.className = "trend";
+  const chart = el("div", "trend");
   chart.setAttribute("role", "img");
   chart.setAttribute("aria-label", "Records per publication year");
   for (const row of rows) {
     const year = row.Published_Year ?? "N/A";
-    const col = document.createElement("div");
-    col.className = "trend-col";
-    col.title = `${year}: ${row.total_cves} records, ${row.high_critical_network} high/critical and network-reachable`;
-
-    const track = document.createElement("div");
-    track.className = "trend-track";
-    const bar = document.createElement("div");
-    bar.className = "trend-bar";
+    const bar = el("div", "trend-bar");
     bar.style.height = `${(row.total_cves / max) * 100}%`;
-    const urgent = document.createElement("div");
-    urgent.className = "trend-urgent";
+    const urgent = el("div", "trend-urgent");
     urgent.style.height = `${row.total_cves ? (row.high_critical_network / row.total_cves) * 100 : 0}%`;
-    const value = document.createElement("span");
-    value.className = "trend-value";
-    value.textContent = row.total_cves;
-    bar.append(urgent, value);
+    bar.append(urgent, el("span", "trend-value", row.total_cves));
+    const track = el("div", "trend-track");
     track.append(bar);
-
-    const label = document.createElement("span");
-    label.className = "trend-year";
-    label.textContent = year;
-    col.append(track, label);
+    const col = el("div", "trend-col");
+    col.title = `${year}: ${row.total_cves} records, ${row.high_critical_network} high/critical and network-reachable`;
+    col.append(track, el("span", "trend-year", year));
     chart.append(col);
   }
   document.querySelector("#annual_trend").append(chart);
@@ -240,31 +205,23 @@ function renderMatrix(rows) {
     ...found.filter((label) => !SEVERITY_ORDER.includes(label)),
   ];
   const max = Math.max(...rows.flatMap((row) => severities.map((label) => row[label] ?? 0)));
-
-  const table = document.createElement("table");
-  table.className = "heatmap";
-  const header = document.createElement("tr");
-  const corner = document.createElement("th");
-  corner.textContent = "Domain";
-  header.append(corner);
+  const table = el("table", "heatmap");
+  const header = el("tr");
+  header.append(el("th", "", "Domain"));
   for (const label of severities) {
-    const th = document.createElement("th");
+    const th = el("th");
     th.append(severity(label));
     header.append(th);
   }
   table.append(header);
 
   for (const row of rows) {
-    const tr = document.createElement("tr");
-    const name = document.createElement("td");
-    name.textContent = row.Keyword;
-    tr.append(name);
+    const tr = el("tr");
+    tr.append(el("td", "", row.Keyword));
     for (const label of severities) {
-      const td = document.createElement("td");
       const value = row[label] ?? 0;
       const heat = max > 0 ? value / max : 0;
-      td.textContent = value;
-      td.className = heat > 0.5 ? "heat hot" : "heat";
+      const td = el("td", heat > 0.5 ? "heat hot" : "heat", value);
       td.style.setProperty("--heat", heat);
       tr.append(td);
     }
