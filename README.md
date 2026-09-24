@@ -4,8 +4,8 @@
   <a href="https://github.com/HeyItWorked/MedCVE/actions/workflows/ci.yml"><img src="https://github.com/HeyItWorked/MedCVE/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.12" />
   <img src="https://img.shields.io/badge/pandas-3.0-150458?style=flat&logo=pandas&logoColor=white" alt="pandas 3.0" />
-  <img src="https://img.shields.io/badge/license-MIT-38bdf8?style=flat" alt="License: MIT" />
-  <img src="https://img.shields.io/badge/data-CC0-22c55e?style=flat" alt="Data: CC0" />
+  <img src="https://img.shields.io/badge/license-MIT-1c1b19?style=flat" alt="License: MIT" />
+  <img src="https://img.shields.io/badge/data-CC0-9e2a1f?style=flat" alt="Data: CC0" />
 </p>
 
 <p align="center">
@@ -16,58 +16,48 @@
 <h3 align="center"><a href="https://heyitworked.github.io/MedCVE/"><ins>Open the live dashboard</ins></a></h3>
 
 <p align="center">
-  <img src=".github/assets/hero.png" alt="The MedCVE dashboard: KPI cards, the annual trend chart, and the distribution tables" width="960" />
+  <img src=".github/assets/hero.png" alt="The MedCVE dashboard: the headline count, a one-sentence summary, and the annual trend chart" width="960" />
 </p>
 
 ## What's on the Dashboard
+
+Each section leads with its point, computed from the data, and puts the evidence beside it.
 
 <table>
 <tr>
 <td width="50%" valign="middle">
 
-### The Headline Numbers
+### One Number Up Front
 
-1,515 CVEs, 151 of them critical. 42% are high or critical, 84% are reachable over the network, and 574 are both — the ones that matter most.
+The page opens with the count and a single sentence instead of a row of KPI cards: 151 critical, 42% high or critical, 84% reachable over a network, and 574 that are both.
 
 </td>
 <td width="50%">
-  <img src=".github/assets/kpis.png" alt="Five KPI cards: total CVEs, critical CVEs, high/critical rate, network vector rate, high/critical network CVEs" width="100%" />
+  <img src=".github/assets/masthead.png" alt="Masthead reading 1,515 known vulnerabilities touch healthcare software" width="100%" />
 </td>
 </tr>
 <tr>
 <td width="50%" valign="middle">
 
-### Year by Year
+### When They Were Published
 
-Published CVEs per year from 2004 to 2026, with the high/critical network-reachable share stacked in orange. Volume jumps from 11 in 2016 to 115 in 2017 and peaks at 279 in 2025.
+Records per publication year from 2004 to 2026. The red part of each bar is the high/critical, network-reachable share. A trickle until 2016, then a climb to a peak of 279 in 2025.
 
 </td>
 <td width="50%">
-  <img src=".github/assets/trend.png" alt="Annual trend column chart with high/critical network share highlighted" width="100%" />
+  <img src=".github/assets/trend.png" alt="Annual column chart with the urgent share in red" width="100%" />
 </td>
 </tr>
 <tr>
 <td width="50%" valign="middle">
 
-### Severity, Two Ways
+### How Severe, and How Reachable
 
-The NVD severity label next to fixed CVSS score bands. Nearly half the records are medium; one in ten is critical.
-
-</td>
-<td width="50%">
-  <img src=".github/assets/severity.png" alt="CVSS band and severity distribution tables with share bars and severity badges" width="100%" />
-</td>
-</tr>
-<tr>
-<td width="50%" valign="middle">
-
-### How They're Reached
-
-Attack vectors across the dataset. Network access dominates, with local, adjacent-network, and physical vectors making up the rest.
+Severity, CVSS score bands, and attack vector side by side. Most records are medium severity, but 84% can be reached over a network.
 
 </td>
 <td width="50%">
-  <img src=".github/assets/vectors.png" alt="Attack vector distribution table" width="100%" />
+  <img src=".github/assets/severity.png" alt="Severity, CVSS band, and attack vector tables with thin share bars" width="100%" />
 </td>
 </tr>
 <tr>
@@ -75,11 +65,11 @@ Attack vectors across the dataset. Network access dominates, with local, adjacen
 
 ### What Breaks
 
-Weaknesses ranked by how many high and critical records they account for. SQL injection (CWE-89) leads by a wide margin, ahead of general injection (CWE-74).
+Weaknesses ranked by high and critical records, with plain-English names next to each CWE. SQL injection (CWE-89) accounts for 190, 2.8× the next weakness.
 
 </td>
 <td width="50%">
-  <img src=".github/assets/weakness.png" alt="Weakness ranking table with inline bars" width="100%" />
+  <img src=".github/assets/weakness.png" alt="Weakness ranking with CWE IDs, names, and bars" width="100%" />
 </td>
 </tr>
 <tr>
@@ -91,31 +81,31 @@ Healthcare domains ranked by a priority score that weighs severity, network reac
 
 </td>
 <td width="50%">
-  <img src=".github/assets/domains.png" alt="Domain ranking table with priority bars and network rates" width="100%" />
+  <img src=".github/assets/domains.png" alt="Domain ranking with record counts, priority bars, and network-reachable share" width="100%" />
 </td>
 </tr>
 <tr>
 <td width="50%" valign="middle">
 
-### Domain × Severity
+### Where Severity Clusters
 
-A heatmap of the top ten domains by severity, so you can see *where* the critical and high findings cluster, not just how many there are.
+A heatmap of the ten highest-priority domains by severity, shaded in a single red ramp, so you can see where the critical and high findings pile up.
 
 </td>
 <td width="50%">
-  <img src=".github/assets/matrix.png" alt="Domain by severity heatmap" width="100%" />
+  <img src=".github/assets/matrix.png" alt="Domain by severity heatmap in shades of red" width="100%" />
 </td>
 </tr>
 <tr>
 <td width="50%" valign="middle">
 
-### A Triage Queue
+### Review First
 
-The fifteen records that rise to the top of a review queue when severity, network reach, and CVSS score are combined.
+The fifteen records a simple triage score puts at the top of the queue. Each CVE links to its NVD entry.
 
 </td>
 <td width="50%">
-  <img src=".github/assets/triage.png" alt="Triage queue table of critical CVEs with domains and scores" width="100%" />
+  <img src=".github/assets/triage.png" alt="Triage queue of critical CVEs linked to NVD" width="100%" />
 </td>
 </tr>
 </table>
@@ -126,7 +116,7 @@ The fifteen records that rise to the top of a review queue when severity, networ
 - **Exports pinned by tests** — `pytest` rebuilds all nine JSON files from the raw CSV and fails if a committed export drifts.
 - **Strict JSON** — no `NaN` ever reaches the browser; nulls export as `null`.
 - **No build step** — one HTML file, one stylesheet, and plain JavaScript that reads `data/processed/`.
-- **Works on a phone** — panels stack, and the trend chart opens on the most recent years.
+- **Works on a phone** — sections stack, wide tables scroll inside their column, and the trend chart opens on the most recent years.
 - **A written analysis** — the notebook walks through the questions, cleaning, metric definitions, and plots.
 
 ---
