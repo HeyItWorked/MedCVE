@@ -4,32 +4,79 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MedCVE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
     <link rel="stylesheet" href="src/styles.css">
   </head>
   <body>
     <main>
-      <header>
-        <h1>MedCVE</h1>
-        <p>Healthcare-tagged CVE records from the NVD, summarized.</p>
+      <header class="masthead">
+        <p class="source">MedCVE &middot; healthcare-tagged CVE records from the NIST National Vulnerability Database</p>
+        <h1><span id="total-cves">&hellip;</span> known vulnerabilities touch healthcare software.</h1>
+        <p class="dek" id="dek"></p>
         <p id="status">Loading...</p>
       </header>
 
-      <section id="kpi-cards"></section>
+      <section class="section">
+        <div class="section-head">
+          <h2>When they were published</h2>
+          <p class="takeaway" id="trend-takeaway"></p>
+        </div>
+        <div>
+          <p class="legend"><span class="key key-all"></span>All records <span class="key key-urgent"></span>High or critical, and network-reachable</p>
+          <div id="annual_trend"></div>
+        </div>
+      </section>
 
-      <section class="grid">
-        <article><h2>Annual Trend</h2><div id="annual_trend"></div></article>
-        <article><h2>CVSS Bands</h2><div id="cvss_bands"></div></article>
-        <article><h2>Severity Distribution</h2><div id="severity_distribution"></div></article>
-        <article><h2>Attack Vector Distribution</h2><div id="attack_vector_distribution"></div></article>
-        <article><h2>Weakness Ranking</h2><div id="weakness_ranking"></div></article>
-        <article><h2>Domain Ranking</h2><div id="domain_ranking"></div></article>
-        <article><h2>Domain Severity Matrix</h2><div id="domain_severity_matrix"></div></article>
-        <article><h2>Triage Queue</h2><div id="triage_queue"></div></article>
+      <section class="section wide">
+        <div class="section-head">
+          <h2>How severe, and how reachable</h2>
+          <p class="takeaway" id="severity-takeaway"></p>
+        </div>
+        <div class="trio">
+          <div><h3>Severity</h3><div id="severity_distribution"></div></div>
+          <div><h3>CVSS score band</h3><div id="cvss_bands"></div></div>
+          <div><h3>Attack vector</h3><div id="attack_vector_distribution"></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>What breaks</h2>
+          <p class="takeaway" id="weakness-takeaway"></p>
+        </div>
+        <div id="weakness_ranking"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Where it hits</h2>
+          <p class="takeaway" id="domain-takeaway"></p>
+        </div>
+        <div id="domain_ranking"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Where severity clusters</h2>
+          <p class="takeaway">The ten highest-priority domains, counted by severity. Darker cells hold more records.</p>
+        </div>
+        <div id="domain_severity_matrix"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Review first</h2>
+          <p class="takeaway">The fifteen records a simple triage score puts at the top of the queue. Each links to its NVD entry.</p>
+        </div>
+        <div id="triage_queue"></div>
       </section>
 
       <footer>
         <p>The domain priority score and the triage score are ordering heuristics with hand-picked weights. They rank records for review and do not measure security or patient risk.</p>
         <p>CVSS scores of exactly 0.0 and missing scores fall in no band, so the band shares can add up to less than 100%.</p>
+        <p>Data: Healthcare Cybersecurity Vulnerabilities Dataset (CC0), derived from the NVD. Public CVE records, not patient data.</p>
       </footer>
     </main>
     <script type="module" src="src/app.js"></script>
