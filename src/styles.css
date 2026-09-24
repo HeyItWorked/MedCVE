@@ -236,14 +236,15 @@ tr:hover td {
 
 .trend {
   display: flex;
-  gap: 6px;
+  gap: 4px;
+  padding: 0 6px;
   height: 220px;
   overflow-x: auto;
 }
 
 .trend-col {
   flex: 1;
-  min-width: 34px;
+  min-width: 22px;
   display: flex;
   flex-direction: column;
 }
@@ -285,6 +286,6 @@ tr:hover td {
 .trend-year {
   margin-top: 6px;
   text-align: center;
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   color: var(--muted);
 }
