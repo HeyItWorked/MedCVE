@@ -73,13 +73,25 @@ Attack vectors across the dataset. Network access dominates, with local, adjacen
 <tr>
 <td width="50%" valign="middle">
 
-### What Breaks, and Where
+### What Breaks
 
-Weaknesses ranked by high/critical volume — SQL injection (CWE-89) leads by a wide margin — beside healthcare domains ranked by a priority score.
+Weaknesses ranked by how many high and critical records they account for. SQL injection (CWE-89) leads by a wide margin, ahead of general injection (CWE-74).
 
 </td>
 <td width="50%">
-  <img src=".github/assets/rankings.png" alt="Weakness ranking and domain ranking tables with inline bars" width="100%" />
+  <img src=".github/assets/weakness.png" alt="Weakness ranking table with inline bars" width="100%" />
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Where It Hits
+
+Healthcare domains ranked by a priority score that weighs severity, network reach, and CVSS. Records tagged "hospital" lead, followed by "patient", OpenEMR, and DICOM.
+
+</td>
+<td width="50%">
+  <img src=".github/assets/domains.png" alt="Domain ranking table with priority bars and network rates" width="100%" />
 </td>
 </tr>
 <tr>
@@ -125,7 +137,7 @@ The fifteen records that rise to the top of a review queue when severity, networ
   <a href="https://www.python.org"><kbd><img src="https://www.google.com/s2/favicons?domain=python.org&sz=64" alt="Python logo" width="16" valign="middle" /> Python</kbd></a> &nbsp;
   <a href="https://pandas.pydata.org"><kbd><img src="https://www.google.com/s2/favicons?domain=pandas.pydata.org&sz=64" alt="pandas logo" width="16" valign="middle" /> pandas</kbd></a> &nbsp;
   <a href="https://numpy.org"><kbd><img src="https://www.google.com/s2/favicons?domain=numpy.org&sz=64" alt="NumPy logo" width="16" valign="middle" /> NumPy</kbd></a> &nbsp;
-  <a href="https://matplotlib.org"><kbd><img src="https://www.google.com/s2/favicons?domain=matplotlib.org&sz=64" alt="Matplotlib logo" width="16" valign="middle" /> Matplotlib</kbd></a> &nbsp;
+  <a href="https://matplotlib.org"><kbd><img src="https://matplotlib.org/stable/_static/favicon.ico" alt="Matplotlib logo" width="16" valign="middle" /> Matplotlib</kbd></a> &nbsp;
   <a href="https://seaborn.pydata.org"><kbd><img src="https://www.google.com/s2/favicons?domain=seaborn.pydata.org&sz=64" alt="seaborn logo" width="16" valign="middle" /> seaborn</kbd></a> &nbsp;
   <a href="https://jupyter.org"><kbd><img src="https://www.google.com/s2/favicons?domain=jupyter.org&sz=64" alt="Jupyter logo" width="16" valign="middle" /> Jupyter</kbd></a> &nbsp;
   <a href="https://pytest.org"><kbd><img src="https://www.google.com/s2/favicons?domain=pytest.org&sz=64" alt="pytest logo" width="16" valign="middle" /> pytest</kbd></a> &nbsp;
